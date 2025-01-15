@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki Doğdun Abiciğim🤩</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+            text-align: center;
+        }
+        header {
+            position: relative;
+            background: linear-gradient(90deg, #003366, #0066cc);
+            color: white;
+            padding: 20px;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-30deg);
+            animation: lightbeam 3s infinite linear;
+        }
+        @keyframes lightbeam {
+            0% {
+                transform: translateX(-100%) skewX(-30deg);
+            }
+            100% {
+                transform: translateX(100%) skewX(-30deg);
+            }
+        }
+        h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        main {
+            padding: 30px;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004080;
+        }
+        .animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .spark {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #0066cc;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #0066cc;
+            animation: float 5s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10%) scale(1.5);
+                opacity: 0;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a1a;
+            border: 2px solid #0066cc;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .modal h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .modal button {
+            margin-top: 15px;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doğum Günün Kutlu Olsun Kral🎉</h1>
+        <p>Yeni yaşın umarım çok mutlu olur beraber nice senelereee(☞ﾟヮﾟ)☞</p>
+    </header>
+    <main>
+        <section>
+            <h2>Kutla hadi(⌐■_■)</h2>
+            <p></p>
+        </section>
+        <button onclick="openModal()">Kutla</button>
+        <div class="animation" id="animation-container"></div>
+    </main>
+    <div id="overlay"></div>
+    <div class="modal" id="birthdayModal">
+        <h2>Nice yıllara krall💙</h2>
+        <p>Doğum günün kutlu olsun abiciğim nice mutlu seneleree🥳 </p>
+        <button onclick="closeModal()">Kapat</button>
+    </div>
+
+    <script>
+        function celebrate() {
+            const container = document.getElementById('animation-container');
+            const duration = 7000; // Animasyon süresi (ms)
+            const interval = 150; // Yeni efektlerin oluşturulma aralığı (ms)
+
+            const intervalId = setInterval(() => {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = Math.random() * 100 + 'vw';
+                spark.style.animationDuration = Math.random() * 3 + 4 + 's';
+                container.appendChild(spark);
+                setTimeout(() => spark.remove(), 5000);
+            }, interval);
+
+            setTimeout(() => clearInterval(intervalId), duration);
+        }
+
+        function openModal() {
+            document.getElementById('birthdayModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            celebrate();
+        }
+
+        function closeModal() {
+            document.getElementById('birthdayModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
